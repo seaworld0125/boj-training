@@ -27,7 +27,7 @@ bool BF(vector<Edge> & edges) {
             dest = edges[j].end;
             cost = edges[j].cost;
             
-            if(dist[now] != INF && dist[dest] > dist[now] + cost) {
+            if(dist[dest] > dist[now] + cost) {
                 dist[dest] = dist[now] + cost;
 
                 if(i == N - 1) return true;
@@ -39,7 +39,7 @@ bool BF(vector<Edge> & edges) {
         dest = edges[i].end;
         cost = edges[i].cost;
         
-        if(dist[now] != INF && dist[dest] > dist[now] + cost) {
+        if(dist[dest] > dist[now] + cost) {
             return true;
         }
     }
