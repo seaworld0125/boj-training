@@ -13,33 +13,22 @@ struct Edge {
     Edge(int s, int e, int c): start(s), end(e), cost(c) {}
 };
 
-int dist[501];
-
 int TC, N, M, W; 
 
-bool BF(vector<Edge> & edges) {
-    int now, dest, cost;
+bool BF(vector<Edge> & edges, int * dist) {
     int size = edges.size();
 
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < size; j++) {
-            now = edges[j].start;
-            dest = edges[j].end;
-            cost = edges[j].cost;
-            
-            if(dist[dest] > dist[now] + cost) {
-                dist[dest] = dist[now] + cost;
+            if(dist[edges[j].end] > dist[edges[j].start] + edges[j].cost) {
+                dist[edges[j].end] = dist[edges[j].start] + edges[j].cost;
 
                 if(i == N - 1) return true;
             }
         }
     }
     for(int i = 0; i < size; i++) {
-        now = edges[i].start;
-        dest = edges[i].end;
-        cost = edges[i].cost;
-        
-        if(dist[dest] > dist[now] + cost) {
+        if(dist[edges[i].end] > dist[edges[i].start] + edges[i].cost) {
             return true;
         }
     }
@@ -53,7 +42,7 @@ int main() {ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         cin >> N >> M >> W;
 
         vector<Edge> edges;
-        fill_n(dist, N + 1, 0);
+        int dist[501] = {0};
 
         int S, E, T;
         for(int j = 0; j < M; j++) {
@@ -65,9 +54,6 @@ int main() {ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
             cin >> S >> E >> T;
             edges.emplace_back(S, E, -T);
         }
-
-        bool ans = BF(edges);
-
-        cout << (ans ? "YES\n" : "NO\n");
+        cout << (BF(edges, dist) ? "YES\n" : "NO\n");
     }
 }
