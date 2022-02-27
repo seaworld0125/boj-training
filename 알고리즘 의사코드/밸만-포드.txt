@@ -1,0 +1,19 @@
+edge {
+    start
+    end
+    cost
+}
+
+dist[N] = {INF} // 거리 배열 N 개
+edge[M] = {...} // 간선 정보 M 개
+
+negativeCirculation = false // 음수 사이클 여부
+
+while ( i < N ) : // N 번 만큼 반복한다
+    while ( j < M ) : // M 번 만큼 반복한다
+        if ( dist[edge[j].start] != INF ) : // 아직 갱신되지 않은 정점은 건너뛴다
+            if ( dist[edge[j].end] > dist[edge[j].start] + edge[j].cost ) : // 최단 거리로 갱신이 가능한지
+                dist[edge[j].end] = dist[edge[j].start] + edge[j].cost // 갱신
+                	if ( i == N - 1 ) :
+                    	negativeCirculation = false
+                        break
