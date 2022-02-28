@@ -9,7 +9,8 @@ struct Trie {
 
     Trie() {
         finish = false;
-        fill(node, node + 10, nullptr);
+        // fill(node, node + 10, nullptr);
+        fill_n(node, 10, nullptr);
     }
 
     ~Trie() {
@@ -18,23 +19,26 @@ struct Trie {
                 delete node[i];
     }
 
-    void insert(char* str) {
-        if(*str == '\0') {finish = true; return;}
-        
-        int cur = *str - '0';
-        if(node[cur] == NULL) node[cur] = new Trie();
-
-        node[cur]->insert(str + 1);
-    }
-
-    bool find(char * str) {
-        if(*str == '\0') return false;
-        if(finish) return true;
-
-        int cur = *str - '0';
-        return node[cur]->find(str + 1);
-    }
+    void insert(char* str);
+    bool find(char * str);
 };
+
+void Trie::insert(char* str) {
+    if(*str == '\0') {finish = true; return;}
+    
+    int cur = *str - '0';
+    if(node[cur] == NULL) node[cur] = new Trie();
+
+    node[cur]->insert(str + 1);
+}
+
+bool Trie::find(char * str) {
+    if(*str == '\0') return false;
+    if(finish) return true;
+
+    int cur = *str - '0';
+    return node[cur]->find(str + 1);
+}
 
 int main() {ios::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     int t, n;
