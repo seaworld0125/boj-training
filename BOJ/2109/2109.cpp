@@ -29,7 +29,7 @@ int main() {ios_base::sync_with_stdio(false); cin.tie(NULL);
     for(auto pd : v) {
         lastDay = max(lastDay, pd.second);
 
-        if(pq.size() >= lastDay) {
+        if(pq.size() >= lastDay) {                       
             ans -= pq.top();
             pq.pop();
         }
