@@ -6,7 +6,6 @@ using namespace std;
 int R, C;
 int jy, jx;
 int fy, fx;
-int ty, tx;
 
 char map[1001][1001];
 bool visited[1001][1001];
@@ -19,11 +18,10 @@ inline bool checkRange(int y, int x) {
 int dy[] = {-1, 1, 0, 0};
 int dx[] = {0, 0, -1, 1};
 
-int BFS(int sy, int sx, bool hasTarget) {
+int BFS() {
     fill_n(visited[0], 1002001, false);
-    visited[sy][sx] = true;
-
-    visit.emplace(sy, sx);
+    visit.emplace(fy, fx);
+    visit.emplace(jy, jx);
 
     int ans = 1;
     while(!visit.empty()) {
@@ -32,15 +30,6 @@ int BFS(int sy, int sx, bool hasTarget) {
         for(int i = 0; i < size; i++) {
             auto pos = visit.front();
             visit.pop();
-            
-            if(hasTarget) {
-                if(pos.first == ty && pos.second == tx) return ans++;
-            }
-            else if(pos.first == 0 || pos.second == 0 || pos.first == R - 1 || pos.second == C - 1) {
-                ty = pos.first;
-                tx = pos.second;
-                return ans++;
-            }
 
             int y, x;
             for(int i = 0; i < 4; i++) {
@@ -48,6 +37,10 @@ int BFS(int sy, int sx, bool hasTarget) {
                 x = pos.second + dx[i];
 
                 if(visited[y][x] || checkRange(y, x)) continue;
+
+                if(map[pos.first][pos.second] == 'J') {
+                    map[pos.first][pos.second]
+                }
 
                 visited[y][x] = true;
                 visit.emplace(y, x);
@@ -75,10 +68,4 @@ int main() {ios_base::sync_with_stdio(0); cin.tie(NULL);
             }
         }
     }
-
-    int j_time = BFS(jy, jx, false);
-    int f_time = BFS(jy, jx, true);
-
-    if(j_time <= f_time && j_time != INF) cout << j_time;
-    else cout << "IMPOSSIBLE";
 }
