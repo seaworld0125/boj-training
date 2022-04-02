@@ -6,37 +6,32 @@ using namespace std;
 
 int N;
 bool board[10][10];
-bool visited[10][10];
-vector<pair<int, int>> pos; // 비숍을 놓을 수 있는 자리
+bool d[20] = {0}; // 왼쪽으로 기운 대각선
 
-#define F first
-#define S second
-
-inline bool checkOverlap(int y1, int x1, int y2, int x2) {
-    return abs(y1 - y2) == abs(x1 - x2);
+inline bool checkOverlap(int y, int x) {
+    return board[y][x] && !d[x - y - N];
 }
 
-int recursive(int y, int x, int count) {
-    visited[y][x] = true;
+// 오른쪽으로 기울어진 대각선 하나씩 탐색
+int recursive(int n) {
+    if(n >= 2 * N - 1) return 0;
 
-    int ans = count;
-    for(int i = 0; i < pos.size(); i++) { // 다음 비숍 자리를 고름
-        int y_ = pos[i].F;
-        int x_ = pos[i].S;
-        if(visited[y_][x_]) continue; // 다음 비숍 자리도 대각은 고를 수 없음
-
-        bool canPut = true;
-        for(int j = 0; j < pos.size(); j++) { 
-            if(visited[pos[j].F][pos[j].S] && checkOverlap(y_, x_, pos[j].F, pos[j].S)) { // 놓아져 있는 비숍들 중에서 대각선에 있는지 확인
-                canPut = false;
-                break;
-            }
+    int sum = -1;
+    int y = (n < N ? n : N - 1);
+    int x = (n < N ? 0 : n - N + 1);
+    
+    while(y >= 0 && x < N) {
+        if(checkOverlap(y, x)) {
+            d[x - y - N] = true;
+            sum = max(sum, recursive(n + 2) + 1);
+            d[x - y - N] = false;
         }
-        if(!canPut) continue;
-        ans = max(ans, recursive(y_, x_, count + 1));
+        y--;
+        x++;
     }
-    visited[y][x] = false;
-    return ans;
+    if(sum == -1) sum = recursive(n + 2);
+
+    return sum;
 }
 
 int main() {ios_base::sync_with_stdio(false); cin.tie(NULL);
@@ -44,15 +39,7 @@ int main() {ios_base::sync_with_stdio(false); cin.tie(NULL);
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
             cin >> board[i][j];
-            if(board[i][j]) pos.emplace_back(i, j);
-
-            visited[i][j] = false;
         }
     }
-
-    int ans = 0;
-    for(int i = 0; i < pos.size(); i++) { // 시작 점
-        ans = max(ans, recursive(pos[i].F, pos[i].S, 1));
-    }
-    cout << ans;
+    cout << recursive(0) + recursive(1);
 }
