@@ -5,4 +5,8 @@
 
 외부시험/
 다시 도전할 문제들/
-test.*
+
+TEST/
+
+test.cpp
+test.exe
