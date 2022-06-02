@@ -17,8 +17,8 @@ int main() {ios_base::sync_with_stdio(0); cin.tie(NULL);
     vector<int> ans;
     ans.emplace_back(v[0]);
 
-    for(int i = 1; i < N; i++) {
-        auto it = lower_bound(ans.begin(), ans.end(), v[i]);
+    for(int i = 1; i < N; i++) { // LIS
+        auto it = lower_bound(ans.begin(), ans.end(), v[i]);            
 
         if(it == ans.end()) {
             ans.emplace_back(v[i]);
