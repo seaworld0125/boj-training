@@ -9,23 +9,6 @@
 #include <cmath>
 using namespace std;
 
-// #define pii pair<int, int>
-// #define F first
-// #define S second
-
-// #define endl '\n'
-
-// void printBoard(vector<vector<int>>& board) {
-//     int boardLength = board.size();
-//     int boardWidth = board[0].size();
-
-//     for(int i = 0; i < boardLength; i++) {
-//         for(int j = 0; j < boardWidth; j++) {
-//             cout << board[i][j] << '\t';
-//         }cout << "\n\n";
-//     }
-// }
-
 int changeDegree[1001][1001];
 
 int solution(vector<vector<int>> board, vector<vector<int>> skill) {

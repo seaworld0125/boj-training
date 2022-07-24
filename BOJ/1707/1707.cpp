@@ -13,7 +13,7 @@ void BFS(int start, vector<vector<int>> & edges, vector<int> & color) {
     while(!visit.empty()) {
         int size = visit.size();
 
-        COLOR = (COLOR ? false : true);
+        COLOR = !COLOR;
         for(int i = 0; i < size; i++) {
             int now = visit.front();
             visit.pop();

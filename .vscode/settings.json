@@ -4,6 +4,18 @@
         "xutility": "cpp",
         "iostream": "cpp",
         "queue": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "list": "cpp",
+        "deque": "cpp",
+        "vector": "cpp",
+        "sstream": "cpp",
+        "functional": "cpp",
+        "algorithm": "cpp",
+        "type_traits": "cpp",
+        "map": "cpp"
     }
 }
