@@ -33,8 +33,8 @@ bool check(vector<int> original, string& word) {
     int acc = 0;
     for(int i = 0; i < ALPHABET; i++) {
         acc += original[i];
+        if(acc > 1) return false;
     }
-    if(acc > 1) return false;
 
     return true;
 }
@@ -59,7 +59,7 @@ int main() {ios_base::sync_with_stdio(0); cin.tie(NULL);
     int sub;
     while(n--) {
         cin >> word;
-        sub = abs((int)(originalLen - word.length()));
+        sub = abs(originalLen - (int)word.length());
 
         if(sub > 1) continue;
 
