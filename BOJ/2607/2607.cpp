@@ -5,7 +5,6 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-
 #define ALPHABET 26
 
 bool check(vector<int> original, string& word) {

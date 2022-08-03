@@ -17,7 +17,7 @@ void recursive(int basicMap[][21], int dir, int count) {
         return;
     }
 
-    if(dir == 0 || dir == 1) { // 왼 방향, 아래 방향
+    if(dir == 0 || dir == 1) { // 왼쪽, 아래 방향
         for(int l = 0; l < N; l++) { 
             
             vector<deque<int>> mem(N);
@@ -36,15 +36,12 @@ void recursive(int basicMap[][21], int dir, int count) {
                     mem[l].emplace_back(num);
                 }
             }
-
             int i = 0;
-            int size = mem[l].size();
-            for(int k = 0; k < size; k++) { 
+            while(!mem[l].empty()) {
                 int num = mem[l].front();
                 mem[l].pop_front();
 
                 if(num == 0) continue;
-
                 if(dir == 0) map[l][i++] = num;
                 else map[i++][l] = num;
             }
@@ -74,13 +71,11 @@ void recursive(int basicMap[][21], int dir, int count) {
                 }
             }
             int i = N - 1;
-            int size = mem[l].size();
-            for(int k = 0; k < size; k++) {
+            while(!mem[l].empty()) {
                 int num = mem[l].front();
                 mem[l].pop_front();
 
                 if(num == 0) continue;
-
                 if(dir == 2) map[l][i--] = num;
                 else map[i--][l] = num;
             }
@@ -90,7 +85,6 @@ void recursive(int basicMap[][21], int dir, int count) {
             }
         }
     }
-
     recursive(map, 0, count + 1);
     recursive(map, 1, count + 1);
     recursive(map, 2, count + 1);
@@ -108,11 +102,9 @@ int main() {
             ans = max(ans, basicMap[i][j]);
         }        
     }
-
-    recursive(basicMap, 0, 0); // 왼
-    recursive(basicMap, 1, 0); // 아
-    recursive(basicMap, 2, 0); // 오
-    recursive(basicMap, 3, 0); // 위
-
+    recursive(basicMap, 0, 0); 
+    recursive(basicMap, 1, 0); 
+    recursive(basicMap, 2, 0); 
+    recursive(basicMap, 3, 0); 
     cout << ans;
 }
