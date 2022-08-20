@@ -3,6 +3,9 @@ using namespace std;
 
 int main() {
 
-    vector<int> visit = {0};
-    cout << visit.size();
+    set<int> tset = {10, 2, 1, 5,76 ,1, 61,25};
+
+    for(auto i : tset) {
+        cout << i << " ";
+    }
 }
