@@ -12,7 +12,7 @@ using namespace std;
 #define S second
 
 int dist[50001];
-vector<pair<int, int>> edges[50001]; // <weight, node>
+vector<pii> edges[50001]; // <weight, node>
 
 bool isGate[50001];
 bool isSummit[50001];
@@ -46,7 +46,7 @@ void dijkstra(vector<int>& gates) {
 vector<int> solution(int n, vector<vector<int>> paths, vector<int> gates, vector<int> summits) {
     for(auto g : gates) isGate[g] = true;
     for(auto s : summits) isSummit[s] = true;
-    
+
     for(auto path : paths) {
         int i = path[0];
         int j = path[1];
