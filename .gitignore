@@ -9,3 +9,6 @@ test.cpp
 test.exe
 test.txt
 tempCodeRunnerFile.cpp
+
+CMakeLists.txt
+cmake-build-debug/
