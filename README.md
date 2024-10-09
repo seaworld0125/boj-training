@@ -1,28 +1,6 @@
 # boj-hard-training
-매일 1문제 + 해설
+<div align="center">
 
----
-
-템플릿
-
-# 문제번호. 문제제목
-
-[링크](https://www.acmicpc.net/problem/문제번호)
-
-| 난이도 | 정답률(\_%) | 시간 제한(초) | 푸는데 걸린 시간 |
-| :----: | :---------: | :-----------: | :--------------: |
-|        |             |               |                  |
-
-## 설계
-
-### 시간 복잡도
-
-### 공간 복잡도
-
-## 정리
-
-| 내 코드 (ms) | 빠른 코드 (ms) |
-| :----------: | :------------: |
-|              |                |
-
-## 고생한 점
+[![Solved.ac 프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj=seaworld0125)](https://solved.ac/profile/seaworld0125)
+    
+</div>
